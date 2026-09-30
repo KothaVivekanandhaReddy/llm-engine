@@ -1,0 +1,14 @@
+env/
+__pycache__/
+*.pyc
+
+experiments/qwen-medical-lora/
+experiments/chroma_db/
+experiments/*.json
+experiments/*.index
+
+data/processed/
+data/raw/*.jsonl
+
+.cache/
+.pytest_cache/

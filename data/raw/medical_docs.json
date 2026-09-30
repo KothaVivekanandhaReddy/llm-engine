@@ -1,0 +1,32 @@
+[
+  {
+    "id": "doc_001",
+    "title": "Oxygen Saturation",
+    "text": "Oxygen saturation represents the proportion of hemoglobin binding sites occupied by oxygen. It is commonly estimated using pulse oximetry and is expressed as a percentage."
+  },
+  {
+    "id": "doc_002",
+    "title": "Kidney Function",
+    "text": "The kidneys filter blood, remove metabolic waste, regulate fluid and electrolyte balance, contribute to acid-base regulation, and produce hormones involved in blood pressure regulation and red blood cell production."
+  },
+  {
+    "id": "doc_003",
+    "title": "DNA",
+    "text": "DNA stores genetic information and provides instructions used for the development, function, and reproduction of living organisms."
+  },
+  {
+    "id": "doc_004",
+    "title": "Hypertension",
+    "text": "Hypertension is persistently elevated blood pressure. Long-term hypertension increases the risk of cardiovascular, kidney, and cerebrovascular disease."
+  },
+  {
+    "id": "doc_005",
+    "title": "Hemoglobin",
+    "text": "Hemoglobin is a protein in red blood cells that primarily transports oxygen from the lungs to tissues and carries some carbon dioxide back toward the lungs."
+  },
+  {
+    "id": "doc_006",
+    "title": "Insulin",
+    "text": "Insulin is a hormone produced by pancreatic beta cells. It helps regulate blood glucose by promoting glucose uptake and storage and reducing hepatic glucose production."
+  }
+]

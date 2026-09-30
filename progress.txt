@@ -1,0 +1,30 @@
+01  Load Qwen 0.5B
+02  Load our JSONL
+03  Apply chat template
+04  Baseline inference
+05  LoRA configuration
+06  Train
+07  Save adapter
+08  Evaluate
+09  Compare BASE vs LoRA
+
+Experiment A — SFT : 
+Qwen 0.5B
+    ↓
+our medical dataset
+    ↓
+SFT
+
+Experiment B — LoRA : 
+Qwen 0.5B
+    ↓
+LoRA adapters
+    ↓
+our medical dataset
+
+Then : 
+BASE
+  vs
+SFT
+  vs
+LoRA
