@@ -12,22 +12,26 @@ class ModelRouter:
     def __init__(
         self,
         model_name="Qwen/Qwen2.5-0.5B-Instruct",
+        tokenizer=None,
+        model=None,
     ):
 
-        print(f"Loading shared model: {model_name}")
+        if tokenizer is None or model is None:
 
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_name
-        )
+           print(f"Loading shared model: {model_name}")
 
-        model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            dtype=torch.float32,
-        )
+           tokenizer = AutoTokenizer.from_pretrained(
+                model_name
+           )
 
-        model.eval()
+           model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                dtype=torch.float32,
+           )
 
-        print("Shared model ready.")
+           model.eval()
+
+           print("Shared model ready.")
 
         self.providers = {
             "local-qwen": LocalQwenProvider(
