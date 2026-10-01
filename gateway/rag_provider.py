@@ -151,6 +151,12 @@ class LocalRAGProvider:
                 "generation_latency_seconds":
                     generation_latency,
 
+                "tokens_per_second": (
+                    len(generated_tokens) / generation_latency
+                    if generation_latency > 0
+                    else 0.0
+                ),
+
                 "sources": [
                     {
                         "id": item["id"],

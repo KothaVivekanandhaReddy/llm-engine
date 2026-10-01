@@ -106,10 +106,15 @@ class LocalQwenProvider(BaseProvider):
             latency_seconds=latency,
             output_tokens=len(generated_tokens),
             metadata={
-                "device": (
-                    "cuda"
-                    if torch.cuda.is_available()
-                    else "cpu"
-                )
-            },
-        )
+               "device": (
+                   "cuda"
+                   if torch.cuda.is_available()
+                   else "cpu"
+               ),
+               "tokens_per_second": (
+                    len(generated_tokens) / latency
+                    if latency > 0
+                    else 0.0
+                ),
+},
+)
