@@ -10,29 +10,47 @@ from gateway.models import GenerateRequest, GenerateResponse
 class BaseProvider(ABC):
 
     @abstractmethod
-    def generate(self, request: GenerateRequest) -> GenerateResponse:
+    def generate(
+        self,
+        request: GenerateRequest,
+    ) -> GenerateResponse:
         pass
 
 
 class LocalQwenProvider(BaseProvider):
 
-    def __init__(self, model_name="Qwen/Qwen2.5-0.5B-Instruct"):
+    def __init__(
+        self,
+        model_name="Qwen/Qwen2.5-0.5B-Instruct",
+        tokenizer=None,
+        model=None,
+    ):
         self.model_name = model_name
 
-        print(f"Loading {model_name}...")
+        if tokenizer is None or model is None:
+            print(f"Loading {model_name}...")
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                model_name
+            )
 
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            dtype=torch.float32,
-        )
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                dtype=torch.float32,
+            )
 
-        self.model.eval()
+            self.model.eval()
 
-        print("Local Qwen ready.")
+            print("Local Qwen ready.")
 
-    def generate(self, request: GenerateRequest) -> GenerateResponse:
+        else:
+            self.tokenizer = tokenizer
+            self.model = model
+
+    def generate(
+        self,
+        request: GenerateRequest,
+    ) -> GenerateResponse:
 
         messages = [
             {
@@ -63,31 +81,35 @@ class LocalQwenProvider(BaseProvider):
                 **inputs,
                 max_new_tokens=request.max_tokens,
                 do_sample=request.temperature > 0,
-                temperature=request.temperature
-                if request.temperature > 0
-                else None,
+                temperature=(
+                    request.temperature
+                    if request.temperature > 0
+                    else None
+                ),
             )
 
         latency = time.perf_counter() - start
 
-        generated_tokens = outputs[0][inputs["input_ids"].shape[-1]:]
+        generated_tokens = outputs[0][
+            inputs["input_ids"].shape[-1]:
+        ]
 
         text = self.tokenizer.decode(
             generated_tokens,
             skip_special_tokens=True,
         )
 
-        output_tokens = len(generated_tokens)
-
         return GenerateResponse(
             text=text,
             model=self.model_name,
             provider="local",
             latency_seconds=latency,
-            output_tokens=output_tokens,
+            output_tokens=len(generated_tokens),
             metadata={
-                "device": "cuda"
-                if torch.cuda.is_available()
-                else "cpu"
+                "device": (
+                    "cuda"
+                    if torch.cuda.is_available()
+                    else "cpu"
+                )
             },
         )
