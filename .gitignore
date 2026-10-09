@@ -12,3 +12,6 @@ data/raw/*.jsonl
 
 .cache/
 .pytest_cache/
+
+# Generated benchmark outputs
+experiments/benchmarks/

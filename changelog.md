@@ -59,5 +59,16 @@
 - Benchmark: 12.284s latency for 100 output tokens.
 - Throughput: 8.14 tokens/sec on CPU.
 
+## 2026-10 — Evaluation Benchmark
+
+- Added `evaluation/run_benchmark.py` for repeatable base vs. LoRA evaluation.
+- Added per-question JSONL results and a JSON summary under `experiments/benchmarks/`.
+- Evaluated both models on 14 validation questions.
+- Base: 14.085s average latency; 0.610 keyword coverage.
+- LoRA: 3.594s average latency; 0.448 keyword coverage.
+- Both models completed all 14 questions without errors.
+- Observed that LoRA generated substantially shorter answers, affecting latency comparisons.
+- Existing automated tests: 11 passed.
+- Next: improve answer-quality metrics and add regression checks.
 
 

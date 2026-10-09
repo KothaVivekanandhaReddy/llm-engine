@@ -24,3 +24,13 @@
 - Load the model once when the API starts instead of per request.
 - Keep raw model generation and RAG generation as separate endpoints.
 - Measure latency and tokens/sec instead of only checking output quality.
+
+## 2026-10 — Evaluation Decisions
+
+- Use the validation set for routine model comparisons.
+- Reserve the held-out test set for final evaluation.
+- Compare base and LoRA models on the same questions and generation settings.
+- Treat keyword coverage as a simple lexical metric, not a measure of factual correctness.
+- Interpret latency alongside output-token count because shorter responses can appear faster.
+- Save benchmark results and configurations for reproducibility.
+- Do not claim the LoRA model is better based on latency alone.
