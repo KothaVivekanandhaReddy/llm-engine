@@ -578,52 +578,14 @@ Development-only dependencies and training artifacts are excluded from the runti
 
 ```text
 llm-engine/
-│
-├── configs/
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── finetuning/
-│   ├── prepare.py
-│   ├── train_lora.py
-│   └── train_sft.py
-│
-├── inference/
-│   ├── baseline.py
-│   ├── benchmark.py
-│   ├── quantize.py
-│   ├── rag.py
-│   └── server.py
-│
-├── retrieval/
-│   ├── evaluate.py
-│   ├── ingest.py
-│   └── retrieve.py
-│
-├── gateway/
-│   ├── models.py
-│   ├── providers.py
-│   ├── router.py
-│   ├── mock_provider.py
-│   └── rag_provider.py
-│
-├── evaluation/
-│   ├── evaluate.py
-│   └── regression.py
-│
-├── tests/
-│   ├── test_api.py
-│   ├── test_gateway.py
-│   ├── test_retrieval.py
-│   └── gateway_check.py
-│
-├── Dockerfile
-├── .dockerignore
-├── requirements.txt
-├── requirements-runtime.txt
-└── README.md
-```
+├── configs/          # Training, model, and server configuration files
+├── data/             # Raw and processed datasets
+├── evaluation/       # Benchmark evaluation and regression scripts
+├── finetuning/       # Data prep, LoRA, and SFT training scripts
+├── gateway/          # API routing, models, and provider abstractions
+├── inference/        # Baseline, benchmarking, quantization, and server entry points
+├── retrieval/        # FAISS index ingestion, retrieval, and evaluation
+└── tests/            # Test suite for API, gateway, and retrieval logic
 
 ---
 
